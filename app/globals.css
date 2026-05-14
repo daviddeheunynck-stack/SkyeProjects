@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #0A0A0F;
+  --color-surface: #13131A;
+  --color-border: #1E1E2A;
+  --color-violet: #7F77DD;
+  --color-blue: #378ADD;
+  --color-red: #FF2D2D;
+  --color-text: #E8E8F0;
+  --color-muted: #6B6B80;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #0A0A0F;
+}
+
+body {
+  background-color: #0A0A0F;
+  color: #E8E8F0;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: #7F77DD33;
+  color: #7F77DD;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0A0A0F; }
+::-webkit-scrollbar-thumb { background: #1E1E2A; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #7F77DD44; }
+
+/* ── Ambient background orbs ─────────────────────────────────────────────── */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(120px);
+}
+
+/* Top-right red orb */
+body::before {
+  width: 600px;
+  height: 600px;
+  top: -180px;
+  right: -160px;
+  background: radial-gradient(circle, #FF2D2D18 0%, transparent 70%);
+}
+
+/* Bottom-left secondary red orb */
+body::after {
+  width: 500px;
+  height: 500px;
+  bottom: 10%;
+  left: -180px;
+  background: radial-gradient(circle, #FF2D2D10 0%, transparent 70%);
+}
+
+/* Every direct child of main sits above the orbs */
+main > * {
+  position: relative;
+  z-index: 1;
+}
